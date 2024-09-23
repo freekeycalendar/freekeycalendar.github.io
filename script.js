@@ -5,6 +5,9 @@ fetch(
   .then((data) => process(data));
 
 function process(data) {
+
+  new DOMParser().parseFromString(temp1[0][0], "text/xml").firstChild.innerHTML
+
   let rows = [];
   let cells = [];
   let tempString = "";
