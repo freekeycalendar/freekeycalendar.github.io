@@ -1,24 +1,24 @@
 console.log("hi");
 
-function batchGetValues(spreadsheetId, _ranges, callback) {
-  let ranges = [
-    // Range names ...
-  ];
-  ranges = _ranges;
-  try {
-    gapi.client.sheets.spreadsheets.values.batchGet({
-      spreadsheetId: spreadsheetId,
-      ranges: ranges,
-    }).then((response) => {
-      const result = response.result;
-      console.log(`${result.valueRanges.length} ranges retrieved.`);
-      if (callback) callback(response);
-    });
-  } catch (err) {
-    document.getElementById('content').innerText = err.message;
-    return;
-  }
-}
+// function batchGetValues(spreadsheetId, _ranges, callback) {
+//   let ranges = [
+//     // Range names ...
+//   ];
+//   ranges = _ranges;
+//   try {
+//     gapi.client.sheets.spreadsheets.values.batchGet({
+//       spreadsheetId: spreadsheetId,
+//       ranges: ranges,
+//     }).then((response) => {
+//       const result = response.result;
+//       console.log(`${result.valueRanges.length} ranges retrieved.`);
+//       if (callback) callback(response);
+//     });
+//   } catch (err) {
+//     document.getElementById('content').innerText = err.message;
+//     return;
+//   }
+// }
 
 // batchGetValues('1aiBHwvFfLx21bpbXbQ6edn7Zyp_JK08oEqZYNnbTiSs')
 
