@@ -1,3 +1,5 @@
+console.log("hi");
+
 function batchGetValues(spreadsheetId, _ranges, callback) {
   let ranges = [
     // Range names ...
