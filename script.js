@@ -20,7 +20,7 @@ function batchGetValues(spreadsheetId, _ranges, callback) {
   }
 }
 
-batchGetValues('1aiBHwvFfLx21bpbXbQ6edn7Zyp_JK08oEqZYNnbTiSs')
+// batchGetValues('1aiBHwvFfLx21bpbXbQ6edn7Zyp_JK08oEqZYNnbTiSs')
 
 // fetch(
 //   "https://docs.google.com/spreadsheets/d/1aiBHwvFfLx21bpbXbQ6edn7Zyp_JK08oEqZYNnbTiSs/edit?gid=0#gid=0"
