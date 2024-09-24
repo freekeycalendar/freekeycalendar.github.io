@@ -40,11 +40,17 @@ function addRow() {
     
   fetch(url, {
     method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
     body: JSON.stringify(body)
   })
   .then((response) => response.json())
   .then(json => {
     // Do something with object
     console.log(json.sheet1);
+  })
+  .catch((err) => {
+      console.log(err);
   });
 }
