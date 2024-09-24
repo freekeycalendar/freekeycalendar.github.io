@@ -7,7 +7,7 @@
       // TODO(developer): Set to client ID and API key from the Developer Console
       const CLIENT_ID = '<YOUR_CLIENT_ID>';
       const API_KEY = 'AIzaSyBdvxbF9de3dZ8I28KcTI6p6bYqqjBnRrg';
-
+      const spreadsheetId = '1aiBHwvFfLx21bpbXbQ6edn7Zyp_JK08oEqZYNnbTiSs'
       // Discovery doc URL for APIs used by the quickstart
       const DISCOVERY_DOCS = [
         'https://www.googleapis.com/discovery/v1/apis/drive/v3/rest',
@@ -45,7 +45,7 @@
           discoveryDocs: DISCOVERY_DOCS,
         });
         gapiInited = true;
-        console.log(batchGetValues('1aiBHwvFfLx21bpbXbQ6edn7Zyp_JK08oEqZYNnbTiSs'))
+        console.log(batchGetValues(spreadsheetId))
 
       }
 
