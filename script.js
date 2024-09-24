@@ -31,7 +31,7 @@ function getRows() {
 function addRow() {
   let url = 'https://api.sheety.co/1e98435928ea803a2e7aa06d00608900/fkcSocialCalendar/sheet1';
   let body = {
-    sheet1: {
+    event: {
         "event": "amazing hangout",
         "date": "9/30",
         "location": "the alley",
