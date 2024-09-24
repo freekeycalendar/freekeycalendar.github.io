@@ -1,64 +1,85 @@
-console.log("hi");
+      /* exported gapiLoaded */
+      /* exported gisLoaded */
+      /* exported handleAuthClick */
+      /* exported handleSignoutClick */
+      
+      // TODO(developer): Set to client ID and API key from the Developer Console
+      const CLIENT_ID = '<YOUR_CLIENT_ID>';
+      const API_KEY = 'AIzaSyBdvxbF9de3dZ8I28KcTI6p6bYqqjBnRrg';
 
-// function batchGetValues(spreadsheetId, _ranges, callback) {
-//   let ranges = [
-//     // Range names ...
-//   ];
-//   ranges = _ranges;
-//   try {
-//     gapi.client.sheets.spreadsheets.values.batchGet({
-//       spreadsheetId: spreadsheetId,
-//       ranges: ranges,
-//     }).then((response) => {
-//       const result = response.result;
-//       console.log(`${result.valueRanges.length} ranges retrieved.`);
-//       if (callback) callback(response);
-//     });
-//   } catch (err) {
-//     document.getElementById('content').innerText = err.message;
-//     return;
-//   }
-// }
+      // Discovery doc URL for APIs used by the quickstart
+      const DISCOVERY_DOCS = [
+        'https://www.googleapis.com/discovery/v1/apis/drive/v3/rest',
+        'https://sheets.googleapis.com/$discovery/rest?version=v4',
+      ];
 
-// batchGetValues('1aiBHwvFfLx21bpbXbQ6edn7Zyp_JK08oEqZYNnbTiSs')
+      // Authorization scopes required by the API; multiple scopes can be
+      // included, separated by spaces.
+      const SCOPES = [
+        'https://www.googleapis.com/auth/drive',
+        'https://www.googleapis.com/auth/spreadsheets',
+];
 
-// fetch(
-//   "https://docs.google.com/spreadsheets/d/1aiBHwvFfLx21bpbXbQ6edn7Zyp_JK08oEqZYNnbTiSs/edit?gid=0#gid=0"
-// )
-//   .then((response) => response.text())
-//   .then((data) => process(data));
+      let tokenClient;
+      let gapiInited = false;
+      let gisInited = false;
 
-// function process(data) {
+      // const assert = chai.assert;
+      mocha.setup('bdd');
 
-//   // new DOMParser().parseFromString(temp1[0][0], "text/xml").firstChild.innerHTML
+      /**
+       * Callback after api.js is loaded.
+       */
+      function gapiLoaded() {
+        gapi.load('client', initializeGapiClient);
+      }
 
-//   let rows = [];
-//   let cells = [];
-//   let tempString = "";
-//   let skipHeader = false
+      /**
+       * Callback after the API client is loaded. Loads the
+       * discovery doc to initialize the API.
+       */
+      async function initializeGapiClient() {
+        await gapi.client.init({
+          apiKey: API_KEY,
+          discoveryDocs: DISCOVERY_DOCS,
+        });
+        gapiInited = true;
+        console.log(batchGetValues('1aiBHwvFfLx21bpbXbQ6edn7Zyp_JK08oEqZYNnbTiSs'))
 
-//   for (let i = 0; i < data.length; i++) {
-//     if (data[i - 3] == "/" && data[i - 2] == "t" && data[i - 1] == "r") {
-//       if(skipHeader){
-//         rows.push(cells);
-//         cells = [];
-//       }
-//       skipHeader = true
-//     }
-//     if (data[i - 3] == "<" && data[i - 2] == "t" && data[i - 1] == "d") {
-//       while (data[i] !== ">") {
-//         i++;
-//       }
-//       i++;
-//       let j = i;
-//       while (data[j] + data[j + 1] + data[j + 2] + data[j + 3] !== "</td") {
-//         tempString += data[j];
-//         j++;
-//       }
+      }
 
-//       cells.push(tempString);
-//       tempString = "";
-//     }
-//   }
-//   console.log(rows);
-// }
+      /**
+       * Callback after Google Identity Services are loaded.
+       */
+      function gisLoaded() {
+        tokenClient = google.accounts.oauth2.initTokenClient({
+          client_id: CLIENT_ID,
+          scope: SCOPES.join(' '),
+          callback: '', // defined later
+        });
+        gisInited = true;
+
+      }
+
+function batchGetValues(spreadsheetId, _ranges, callback) {
+  let ranges = [
+    // Range names ...
+  ];
+  ranges = _ranges;
+  try {
+    gapi.client.sheets.spreadsheets.values.batchGet({
+      spreadsheetId: spreadsheetId,
+      ranges: ["A1:B2"],
+    }).then((response) => {
+        console.log(response)
+      const result = response.result;
+      console.log(`${result.valueRanges.length} ranges retrieved.`);
+      if (callback) callback(response);
+    });
+  } catch (err) {
+      console.log(err);
+    console.log(err.message);
+    return;
+  }
+}
+
