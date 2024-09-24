@@ -2,6 +2,7 @@
       /* exported gisLoaded */
       /* exported handleAuthClick */
       /* exported handleSignoutClick */
+      /* exported buttonClick */
       
       // TODO(developer): Set to client ID and API key from the Developer Console
       const CLIENT_ID = '<YOUR_CLIENT_ID>';
