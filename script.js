@@ -73,8 +73,8 @@ function renderRows() {
         locationnode.innerText = location;
 
         locationnode.classList.add("location");
-        node.appendChild(titlenode);
         node.appendChild(datenode);
+        node.appendChild(titlenode);
         node.appendChild(locationnode);
 
         document.getElementById("eventDaddy").appendChild(node);
