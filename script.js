@@ -22,7 +22,7 @@ function getRows() {
   // .then((response) => response.json())
   // .then(json => {
   //   // Do something with the data
-  //   console.log(json.sheet1S);
+  //   return json.events;
   // });
   return RESPONSE;
 }
@@ -76,6 +76,8 @@ function renderRows() {
         node.appendChild(datenode);
         node.appendChild(titlenode);
         node.appendChild(locationnode);
+
+        node.clasList.add("event");
 
         document.getElementById("eventDaddy").appendChild(node);
     }
