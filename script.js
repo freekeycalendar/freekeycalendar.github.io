@@ -57,7 +57,8 @@ function addRow() {
 
 function renderRows() {
     let rows = getRows();
-    for (let r : rows) {
+    for (let i = 0; i < rows.length; i++) {
+        let r = rows[i];
         let event = r['event'];
         let date = r['date'];
         const node = document.createElement("div");
