@@ -78,50 +78,62 @@ function renderRows() {
         let description = r['description']
         
         const node = document.createElement("div");
+        node.classList.add("event");
 
         const sepnode = document.createElement("hr");
         sepnode.classList.add("separator");
         node.appendChild(sepnode);
 
-        // Date first
-        const datenode = document.createElement("div");
-        const datetext = time ? date + " @ " + time : date;
-        datenode.innerText = datetext;
-        datenode.classList.add("date");
-        node.appendChild(datenode);
-
-        // Optional image
-        if (imagelink) {
-            const imagenode = document.createElement("img");
-            imagenode.src = imagelink;
-            imagenode.classList.add("image");
-            node.appendChild(imagenode);
-        }
-
-        
-        const titlenode = document.createElement("div");
-        titlenode.innerText = event;
-        titlenode.classList.add("title");
-        node.appendChild(titlenode);
-
-
-        const locationnode = document.createElement("div");
-        locationnode.innerText = location;
-        locationnode.classList.add("location");        
-        node.appendChild(locationnode);
-
-        if (description) {
-            const descriptionnode = document.createElement("div");
-            descriptionnode.innerText = description;
-            descriptionnode.classList.add("description");        
-            node.appendChild(descriptionnode);
-        }
-
-        node.classList.add("event");
+        maybeAddImage(imagelink);
+        addTitle(event);
+        addDate(date, time);
+        addLocation(location);
+        maybeAddDescription(description);
 
         document.getElementById("eventDaddy").appendChild(node);
     }
 }
 
+function addLocation(location) {
+    const locationnode = document.createElement("div");
+    locationnode.innerText = location;
+    locationnode.classList.add("location");        
+    node.appendChild(locationnode);
+}
+
+function addDate(date, time) {
+    const datenode = document.createElement("div");
+    const datetext = time ? date + " @ " + time : date;
+    datenode.innerText = datetext;
+    datenode.classList.add("date");
+    node.appendChild(datenode);
+}
+
+
+function addTitle(event) { 
+    const titlenode = document.createElement("div");
+    titlenode.innerText = event;
+    titlenode.classList.add("title");
+    node.appendChild(titlenode);
+}
+
+function maybeAddDescription(description) {
+    if (description) {
+        const descriptionnode = document.createElement("div");
+        descriptionnode.innerText = description;
+        descriptionnode.classList.add("description");        
+        node.appendChild(descriptionnode);
+    }
+}
+
+function maybeAddImage(imagelink) {
+    // Optional image
+    if (imagelink) {
+        const imagenode = document.createElement("img");
+        imagenode.src = imagelink;
+        imagenode.classList.add("image");
+        node.appendChild(imagenode);
+    }
+}
 
 renderRows();
