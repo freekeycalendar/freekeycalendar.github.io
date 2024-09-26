@@ -6,7 +6,7 @@ const RESPONSE =
         "date": "9/28",
         "location": "The Greek",
         "image link": "https://cdn.prod.website-files.com/654be393d1f855d893dfbd53/6664ae41dc4bf349f1438ee4_3c62edc0-3d9f-4fcb-bfc7-905a0275059d-p-1600.png",
-        "descrpition": "This will be a really cool concert that happens at the greek. if you don't come you're a loser",
+        "description": "This will be a really cool concert that happens at the greek. if you don't come you're a loser",
         "id": 2
     },
     {
