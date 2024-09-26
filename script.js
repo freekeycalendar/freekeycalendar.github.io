@@ -77,7 +77,7 @@ function renderRows() {
         node.appendChild(titlenode);
         node.appendChild(locationnode);
 
-        node.clasList.add("event");
+        node.classList.add("event");
 
         document.getElementById("eventDaddy").appendChild(node);
     }
