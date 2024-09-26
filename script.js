@@ -84,24 +84,24 @@ function renderRows() {
         sepnode.classList.add("separator");
         node.appendChild(sepnode);
 
-        maybeAddImage(imagelink);
-        addTitle(event);
-        addDate(date, time);
-        addLocation(location);
-        maybeAddDescription(description);
+        maybeAddImage(node, imagelink);
+        addTitle(node, event);
+        addDate(node, date, time);
+        addLocation(node, location);
+        maybeAddDescription(node, description);
 
         document.getElementById("eventDaddy").appendChild(node);
     }
 }
 
-function addLocation(location) {
+function addLocation(node, location) {
     const locationnode = document.createElement("div");
     locationnode.innerText = location;
     locationnode.classList.add("location");        
     node.appendChild(locationnode);
 }
 
-function addDate(date, time) {
+function addDate(node, date, time) {
     const datenode = document.createElement("div");
     const datetext = time ? date + " @ " + time : date;
     datenode.innerText = datetext;
@@ -110,14 +110,14 @@ function addDate(date, time) {
 }
 
 
-function addTitle(event) { 
+function addTitle(node, event) { 
     const titlenode = document.createElement("div");
     titlenode.innerText = event;
     titlenode.classList.add("title");
     node.appendChild(titlenode);
 }
 
-function maybeAddDescription(description) {
+function maybeAddDescription(node, description) {
     if (description) {
         const descriptionnode = document.createElement("div");
         descriptionnode.innerText = description;
@@ -126,7 +126,7 @@ function maybeAddDescription(description) {
     }
 }
 
-function maybeAddImage(imagelink) {
+function maybeAddImage(node, imagelink) {
     // Optional image
     if (imagelink) {
         const imagenode = document.createElement("img");
