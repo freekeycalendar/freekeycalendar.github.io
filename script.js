@@ -28,14 +28,14 @@ const RESPONSE =
 
 
 function getRows() {
-  // let url = 'https://api.sheety.co/1e98435928ea803a2e7aa06d00608900/fkcSocialCalendar/events';
-  // fetch(url)
-  // .then((response) => response.json())
-  // .then(json => {
-  //   // Do something with the data
-  //   return json.events;
-  // });
-  return RESPONSE;
+  let url = 'https://api.sheety.co/1e98435928ea803a2e7aa06d00608900/fkcSocialCalendar/events';
+  fetch(url)
+  .then((response) => response.json())
+  .then(json => {
+    // Do something with the data
+    return json.events;
+  });
+  // return RESPONSE;
 }
 
 
