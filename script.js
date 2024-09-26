@@ -59,23 +59,22 @@ function addRow() {
   .then((response) => response.json())
   .then(json => {
     // Do something with object
-    console.log(json.sheet1);
+    renderRows(json.sheet1);
   })
   .catch((err) => {
       console.log(err);
   });
 }
 
-function renderRows() {
-    let rows = getRows();
+function renderRows(rows) {
     for (let i = 0; i < rows.length; i++) {
         let r = rows[i];
         let event = r['event'];
-        let date = r['date'];
+        let date = r['date (mm/dd)'];
         let time = r['time'];
         let location = r['location'];
-        let imagelink = r['image link'];
-        let description = r['description']
+        let imagelink = r['imageLink (optional)'];
+        let description = r['description (optional)']
         
         const node = document.createElement("div");
         node.classList.add("event");
@@ -136,4 +135,4 @@ function maybeAddImage(node, imagelink) {
     }
 }
 
-renderRows();
+getRows();
