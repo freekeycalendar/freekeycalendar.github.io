@@ -63,11 +63,15 @@ function renderRows() {
         let date = r['date'];
         let location = r['location'];
         const node = document.createElement("div");
-        const titlenode = document.createTextNode(event);
+        const titlenode = document.createElement("div");
+        titlenode.innerText = event;
         titlenode.classList.add("title");
-        const datenode = document.createTextNode(event);
+        const datenode = document.createElement("div");
+        datenode.innerText = date;
         datenode.classList.add("date");
-        const locationnode = document.createTextNode(event);
+        const locationnode = document.createElement("div");
+        locationnode.innerText = location;
+
         locationnode.classList.add("location");
         node.appendChild(titlenode);
         node.appendChild(datenode);
