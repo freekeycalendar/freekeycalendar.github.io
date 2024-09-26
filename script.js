@@ -54,3 +54,15 @@ function addRow() {
       console.log(err);
   });
 }
+
+function renderRows() {
+    let rows = getRows();
+    for (let r : rows) {
+        let event = r['event'];
+        let date = r['date'];
+        const node = document.createElement("div");
+        const textnode = document.createTextNode(event);
+        node.appendChild(textnode);
+        document.getElementById("eventDaddy").appendChild(node);
+    }
+}
