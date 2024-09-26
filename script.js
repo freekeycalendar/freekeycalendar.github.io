@@ -67,3 +67,6 @@ function renderRows() {
         document.getElementById("eventDaddy").appendChild(node);
     }
 }
+
+
+renderRows();
