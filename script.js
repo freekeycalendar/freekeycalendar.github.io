@@ -86,7 +86,7 @@ function renderRows() {
         // Optional image
         if (imagelink) {
             const imagenode = document.createElement("img");
-            imagenode.src = image;
+            imagenode.src = imagelink;
             imagenode.classList.add("image");
             node.appendChild(imagenode);
         }
