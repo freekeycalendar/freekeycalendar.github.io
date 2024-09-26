@@ -4,6 +4,7 @@ const RESPONSE =
     {
         "event": "Cool people concert",
         "date": "9/28",
+        "time": "8pm",
         "location": "The Greek",
         "image link": "https://cdn.prod.website-files.com/654be393d1f855d893dfbd53/6664ae41dc4bf349f1438ee4_3c62edc0-3d9f-4fcb-bfc7-905a0275059d-p-1600.png",
         "description": "This will be a really cool concert that happens at the greek. if you don't come you're a loser",
@@ -71,6 +72,7 @@ function renderRows() {
         let r = rows[i];
         let event = r['event'];
         let date = r['date'];
+        let time = r['time'];
         let location = r['location'];
         let imagelink = r['image link'];
         let description = r['description']
@@ -83,7 +85,8 @@ function renderRows() {
 
         // Date first
         const datenode = document.createElement("div");
-        datenode.innerText = date;
+        const datetext = time ? date + " @ " + time : date;
+        datenode.innerText = datetext;
         datenode.classList.add("date");
         node.appendChild(datenode);
 
