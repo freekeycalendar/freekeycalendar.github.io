@@ -77,6 +77,10 @@ function renderRows() {
         
         const node = document.createElement("div");
 
+        const sepnode = document.createElement("hr");
+        sepnode.classList.add("separator");
+        node.appendChild(sepnode);
+
         // Date first
         const datenode = document.createElement("div");
         datenode.innerText = date;
