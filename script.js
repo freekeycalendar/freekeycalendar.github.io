@@ -61,9 +61,18 @@ function renderRows() {
         let r = rows[i];
         let event = r['event'];
         let date = r['date'];
+        let location = r['location'];
         const node = document.createElement("div");
-        const textnode = document.createTextNode(event);
-        node.appendChild(textnode);
+        const titlenode = document.createTextNode(event);
+        titlenode.classList.add("title");
+        const datenode = document.createTextNode(event);
+        datenode.classList.add("date");
+        const locationnode = document.createTextNode(event);
+        locationnode.classList.add("location");
+        node.appendChild(titlenode);
+        node.appendChild(datenode);
+        node.appendChild(locationnode);
+
         document.getElementById("eventDaddy").appendChild(node);
     }
 }
