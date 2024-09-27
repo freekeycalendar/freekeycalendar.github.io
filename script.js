@@ -80,9 +80,9 @@ function renderRows(rows) {
     //hide loader
     document.getElementById("loader").style.visibility = "hidden";
   
-    let sortedRows = rows.slice(1).sort((a, b) =>  new Date(a['date (mm/dd)']) - new Date(b['date (mm/dd)']));
+    let sortedRows = rows.slice(1).sort((a, b) =>  new Date(a[1]) - new Date(b[1]));
   
-    for (let i = 1; i < sortedRows.length; i++) {
+    for (let i = 0; i < sortedRows.length; i++) {
         let r = rows[i];
         // let event = r['event'];
         // let date = r['date (mm/dd)'];
@@ -102,6 +102,7 @@ function renderRows(rows) {
         let link = r[4]
 
         if (!(event && date && time && location)) continue;
+        if (new Date(date).setYear(2024) - new Date.now() < 0) continue;
 
         const node = document.createElement("div");
         node.classList.add("event");
