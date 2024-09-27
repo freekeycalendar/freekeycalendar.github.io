@@ -1,5 +1,5 @@
 function getRows() {
-  let useTestData = true;
+  let useTestData = false;
   if (useTestData) {
     renderRows(RESPONSE);
   } else {
@@ -15,7 +15,7 @@ function getRows() {
 
 
 function renderRows(rows) {
-    let sortedRows = rows.sort((a, b) => Date(a.date) > Date(b.date));
+    let sortedRows = rows.sort((a, b) =>  new Date(b.date) - new Date(a.date));
   
     for (let i = 0; i < sortedRows.length; i++) {
         let r = rows[i];
