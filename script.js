@@ -101,7 +101,7 @@ function renderRows(rows) {
         // let link = r[4]
 
         if (!(event && date && time && location)) continue;
-        date = date + "/" + new Date(Date.now()).getFullYear());
+        date = date + "/" + new Date(Date.now()).getFullYear();
         if (new Date(date) - Date.now() < 0) continue;
 
         const node = document.createElement("div");
