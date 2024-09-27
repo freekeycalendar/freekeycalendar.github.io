@@ -24,23 +24,23 @@ let tokenClient;
 let gapiInited = false;
 let gisInited = false;
 // const assert = chai.assert;
-mocha.setup('bdd');
+// mocha.setup('bdd');
 /**
  * Callback after api.js is loaded.
  */
 function gapiLoaded() {
-  gapi.load('client', initializeGapiClient);
+  // gapi.load('client', initializeGapiClient);
 }
 /**
  * Callback after the API client is loaded. Loads the
  * discovery doc to initialize the API.
  */
 async function initializeGapiClient() {
-  await gapi.client.init({
-    apiKey: API_KEY,
-    discoveryDocs: DISCOVERY_DOCS,
-  });
-  gapiInited = true;
+  // await gapi.client.init({
+  //   apiKey: API_KEY,
+  //   discoveryDocs: DISCOVERY_DOCS,
+  // });
+  // gapiInited = true;
   // getRows();
 }
 
