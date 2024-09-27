@@ -100,8 +100,10 @@ function renderRows(rows) {
         let cost = r[5]
         let link = r[4]
 
+        let currentYear = new Date(Date.now()).getFullYear()
+        date = date.includes(currentYear) ? date :  date + "/" + currentYear
+
         if (!(event && date && time && location) || event === "Event name") continue;
-        date = date + "/" + new Date(Date.now()).getFullYear();
         if (new Date(date) - Date.now() < 0) continue;
 
         const node = document.createElement("div");
