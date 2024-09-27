@@ -100,7 +100,7 @@ function renderRows(rows) {
         let cost = r[5]
         let link = r[4]
 
-        if (!(event && date && time && location)) continue;
+        if (!(event && date && time && location) || event === "Event name") continue;
         date = date + "/" + new Date(Date.now()).getFullYear();
         if (new Date(date) - Date.now() < 0) continue;
 
