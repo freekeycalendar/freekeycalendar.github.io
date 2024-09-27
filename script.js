@@ -1,6 +1,72 @@
+
+/* exported gapiLoaded */
+/* exported gisLoaded */
+/* exported handleAuthClick */
+/* exported handleSignoutClick */
+/* exported buttonClick */
+
+// TODO(developer): Set to client ID and API key from the Developer Console
+const CLIENT_ID = '<YOUR_CLIENT_ID>';
+const API_KEY = 'AIzaSyBdvxbF9de3dZ8I28KcTI6p6bYqqjBnRrg';
+const spreadsheetId = '1aiBHwvFfLx21bpbXbQ6edn7Zyp_JK08oEqZYNnbTiSs'
+// Discovery doc URL for APIs used by the quickstart
+const DISCOVERY_DOCS = [
+  'https://www.googleapis.com/discovery/v1/apis/drive/v3/rest',
+  'https://sheets.googleapis.com/$discovery/rest?version=v4',
+];
+// Authorization scopes required by the API; multiple scopes can be
+// included, separated by spaces.
+const SCOPES = [
+  'https://www.googleapis.com/auth/drive',
+  'https://www.googleapis.com/auth/spreadsheets',
+];
+let tokenClient;
+let gapiInited = false;
+let gisInited = false;
+// const assert = chai.assert;
+mocha.setup('bdd');
+/**
+ * Callback after api.js is loaded.
+ */
+function gapiLoaded() {
+  gapi.load('client', initializeGapiClient);
+}
+/**
+ * Callback after the API client is loaded. Loads the
+ * discovery doc to initialize the API.
+ */
+async function initializeGapiClient() {
+  await gapi.client.init({
+    apiKey: API_KEY,
+    discoveryDocs: DISCOVERY_DOCS,
+  });
+  gapiInited = true;
+  console.log(batchGetValues(spreadsheetId))
+}
+
+
+
 function getRows() {
   let useTestData = false;
-  if (useTestData) {
+  let useGapi = true;
+  if (useGapi) {
+    try {
+        gapi.client.sheets.spreadsheets.values.batchGet({
+          spreadsheetId: spreadsheetId,
+          ranges: ["A1:G10"],
+        }).then((response) => {
+            console.log(response)
+          const result = response.result;
+          console.log(result);
+          console.log(`${result.valueRanges.length} ranges retrieved.`);
+          // if (callback) callback(response);
+        });
+      } catch (err) {
+          console.log(err);
+        console.log(err.message);
+        return;
+      }
+  } else if (useTestData) {
     renderRows(RESPONSE);
   } else {
     let url = 'https://api.sheety.co/1e98435928ea803a2e7aa06d00608900/fkcSocialCalendar/events';
@@ -146,6 +212,7 @@ function addRow() {
       console.log(err);
   });
 }
+
 
 
 const RESPONSE = 
