@@ -23,8 +23,8 @@ const SCOPES = [
 let tokenClient;
 let gapiInited = false;
 let gisInited = false;
-// const assert = chai.assert;
-// mocha.setup('bdd');
+const assert = chai.assert;
+mocha.setup('bdd');
 /**
  * Callback after api.js is loaded.
  */
@@ -36,18 +36,18 @@ function gapiLoaded() {
  * discovery doc to initialize the API.
  */
 async function initializeGapiClient() {
-  // await gapi.client.init({
-  //   apiKey: API_KEY,
-  //   discoveryDocs: DISCOVERY_DOCS,
-  // });
-  // gapiInited = true;
-  // getRows();
+  await gapi.client.init({
+    apiKey: API_KEY,
+    discoveryDocs: DISCOVERY_DOCS,
+  });
+  gapiInited = true;
+  getRows();
 }
 
 
 function getRows() {
   let useTestData = false;
-  let useGapi = false;
+  let useGapi = true;
   if (useGapi) {
     try {
         gapi.client.sheets.spreadsheets.values.batchGet({
@@ -63,8 +63,8 @@ function getRows() {
       }
   } else if (useTestData) {
     renderRows(RESPONSE);
-    //sheety
   } else {
+    // Use sheety
     let url = 'https://api.sheety.co/1e98435928ea803a2e7aa06d00608900/fkcSocialCalendar/events/';
     fetch(url)
     .then((response) => response.json())
@@ -83,22 +83,22 @@ function renderRows(rows) {
   
     for (let i = 0; i < sortedRows.length; i++) {
         let r = sortedRows[i];
-        let event = r['eventName'];
-        let date = r['date (mm/dd)'];
-        let time = r['time'];
-        let location = r['location'];
-        let imagelink = r['imageLink (optional)'];
-        let description = r['description (optional)']
-        let cost = r['cost (optional)']
-        let link = r['link (optional)']
-        // let event = r[0];
-        // let date = r[1];
-        // let time = r[2];
-        // let location = r[3];
-        // let imagelink = r[7];
-        // let description = r[6]
-        // let cost = r[5]
-        // let link = r[4]
+        // let event = r['eventName'];
+        // let date = r['date (mm/dd)'];
+        // let time = r['time'];
+        // let location = r['location'];
+        // let imagelink = r['imageLink (optional)'];
+        // let description = r['description (optional)']
+        // let cost = r['cost (optional)']
+        // let link = r['link (optional)']
+        let event = r[0];
+        let date = r[1];
+        let time = r[2];
+        let location = r[3];
+        let imagelink = r[7];
+        let description = r[6]
+        let cost = r[5]
+        let link = r[4]
 
         if (!(event && date && time && location)) continue;
         date = date + "/" + new Date(Date.now()).getFullYear();
@@ -187,8 +187,7 @@ function maybeAddImage(node, imagelink) {
 }
 
 // actually do the thing
-
-getRows();
+// getRows();
 
 
 
