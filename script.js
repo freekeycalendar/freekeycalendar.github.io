@@ -41,7 +41,7 @@ async function initializeGapiClient() {
     discoveryDocs: DISCOVERY_DOCS,
   });
   gapiInited = true;
-  console.log(batchGetValues(spreadsheetId))
+  getRows();
 }
 
 
@@ -177,7 +177,7 @@ function maybeAddImage(node, imagelink) {
 
 // actually do the thing
 
-getRows();
+// getRows();
 
 
 
