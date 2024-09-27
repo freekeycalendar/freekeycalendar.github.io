@@ -1,17 +1,23 @@
 function getRows() {
-  let url = 'https://api.sheety.co/1e98435928ea803a2e7aa06d00608900/fkcSocialCalendar/events';
-  fetch(url)
-  .then((response) => response.json())
-  .then(json => {
-    // Do something with the data
-    renderRows(json.events);
-  });
-  // renderRows(RESPONSE);
+  let useTestData = true;
+  if (useTestData) {
+    renderRows(RESPONSE);
+  } else {
+    let url = 'https://api.sheety.co/1e98435928ea803a2e7aa06d00608900/fkcSocialCalendar/events';
+    fetch(url)
+    .then((response) => response.json())
+    .then(json => {
+      // Do something with the data
+      renderRows(json.events);
+    });
+  }
 }
 
 
 function renderRows(rows) {
-    for (let i = 0; i < rows.length; i++) {
+    let sortedRows = rows.sort((a, b) => Date(a.date) > Date(b.date));
+  
+    for (let i = 0; i < sortedRows.length; i++) {
         let r = rows[i];
         let event = r['event'];
         let date = r['date (mm/dd)'];
