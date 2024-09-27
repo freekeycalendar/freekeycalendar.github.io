@@ -83,7 +83,7 @@ function renderRows(rows) {
   
     for (let i = 0; i < sortedRows.length; i++) {
         let r = sortedRows[i];
-        let event = r['event'];
+        let event = r['event name'];
         let date = r['date (mm/dd)'];
         let time = r['time'];
         let location = r['location'];
