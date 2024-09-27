@@ -7,7 +7,6 @@ function getRows() {
     fetch(url)
     .then((response) => response.json())
     .then(json => {
-      // Do something with the data
       renderRows(json.events);
     });
   }
@@ -25,6 +24,8 @@ function renderRows(rows) {
         let location = r['location'];
         let imagelink = r['imageLink (optional)'];
         let description = r['description (optional)']
+        let cost = r['cost (optional)']
+        let link = r['link (optional)']
         
         const node = document.createElement("div");
         node.classList.add("event");
@@ -37,6 +38,8 @@ function renderRows(rows) {
         addTitle(node, event);
         addDate(node, date, time);
         addLocation(node, location);
+        maybeAddCost(node, cost);
+        maybeAddLink(node, link);
         maybeAddDescription(node, description);
 
         document.getElementById("eventDaddy").appendChild(node);
@@ -74,6 +77,27 @@ function maybeAddDescription(node, description) {
         node.appendChild(descriptionnode);
     }
 }
+
+function maybeAddLink(node, link) {
+    if (link) {
+        const linknode = document.createElement("a");
+        linknode.innerText = link;
+        linknode.href = link
+        linknode.classList.add("link");        
+        node.appendChild(linknode);
+    }
+}
+
+
+function maybeAddCost(node, cost) {
+    if (cost) {
+        const costnode = document.createElement("div");
+        costnode.innerText = cost;
+        costnode.classList.add("cost");        
+        node.appendChild(costnode);
+    }
+}
+
 
 function maybeAddImage(node, imagelink) {
     // Optional image
