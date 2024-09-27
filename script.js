@@ -29,7 +29,7 @@ mocha.setup('bdd');
  * Callback after api.js is loaded.
  */
 function gapiLoaded() {
-  // gapi.load('client', initializeGapiClient);
+  gapi.load('client', initializeGapiClient);
 }
 /**
  * Callback after the API client is loaded. Loads the
