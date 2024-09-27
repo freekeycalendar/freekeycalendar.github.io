@@ -78,8 +78,13 @@ function getRows() {
 function renderRows(rows) {
     //hide loader
     document.getElementById("loader").style.display = "none";
+    let currentYear = = new Date(Date.now()).getFullYear();
   
-    let sortedRows = rows.slice(1).sort((a, b) =>  new Date(a[1]) - new Date(b[1]));
+    let sortedRows = rows.slice(1).sort((a, b) =>  {
+      let fulldatea = a[1].includes(currentYear) ? a[1] :  a[1] + "/" + currentYear;
+      let fulldateb = b[1].includes(currentYear) ? b[1] :  b[1] + "/" + currentYear;
+      return new Date(fulldatea) - new Date(fulldateb);
+    });
   
     for (let i = 0; i < sortedRows.length; i++) {
         let r = sortedRows[i];
@@ -100,11 +105,10 @@ function renderRows(rows) {
         let cost = r[5]
         let link = r[4]
 
-        let currentYear = new Date(Date.now()).getFullYear()
-        date = date.includes(currentYear) ? date :  date + "/" + currentYear
+        let fulldate = date.includes(currentYear) ? date :  date + "/" + currentYear
 
         if (!(event && date && time && location) || event === "Event name") continue;
-        if (new Date(date) - Date.now() < 0) continue;
+        if (new Date(fulldate) - Date.now() < 0) continue;
 
         const node = document.createElement("div");
         node.classList.add("event");
