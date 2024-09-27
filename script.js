@@ -41,14 +41,13 @@ async function initializeGapiClient() {
     discoveryDocs: DISCOVERY_DOCS,
   });
   gapiInited = true;
-  getRows();
+  // getRows();
 }
-
 
 
 function getRows() {
   let useTestData = false;
-  let useGapi = true;
+  let useGapi = false;
   if (useGapi) {
     try {
         gapi.client.sheets.spreadsheets.values.batchGet({
@@ -84,22 +83,22 @@ function renderRows(rows) {
   
     for (let i = 0; i < sortedRows.length; i++) {
         let r = sortedRows[i];
-        // let event = r['event'];
-        // let date = r['date (mm/dd)'];
-        // let time = r['time'];
-        // let location = r['location'];
-        // let imagelink = r['imageLink (optional)'];
-        // let description = r['description (optional)']
-        // let cost = r['cost (optional)']
-        // let link = r['link (optional)']
-        let event = r[0];
-        let date = r[1];
-        let time = r[2];
-        let location = r[3];
-        let imagelink = r[7];
-        let description = r[6]
-        let cost = r[5]
-        let link = r[4]
+        let event = r['event'];
+        let date = r['date (mm/dd)'];
+        let time = r['time'];
+        let location = r['location'];
+        let imagelink = r['imageLink (optional)'];
+        let description = r['description (optional)']
+        let cost = r['cost (optional)']
+        let link = r['link (optional)']
+        // let event = r[0];
+        // let date = r[1];
+        // let time = r[2];
+        // let location = r[3];
+        // let imagelink = r[7];
+        // let description = r[6]
+        // let cost = r[5]
+        // let link = r[4]
 
         if (!(event && date && time && location)) continue;
         if (new Date(date).setYear(new Date(Date.now()).getFullYear()) - Date.now() < 0) continue;
@@ -188,7 +187,7 @@ function maybeAddImage(node, imagelink) {
 
 // actually do the thing
 
-// getRows();
+getRows();
 
 
 
