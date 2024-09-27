@@ -78,7 +78,7 @@ function getRows() {
 
 function renderRows(rows) {
     //hide loader
-    document.getElementById("loader").style.visibility = "hidden";
+    document.getElementById("loader").style.display = "none";
   
     let sortedRows = rows.slice(1).sort((a, b) =>  new Date(a[1]) - new Date(b[1]));
   
