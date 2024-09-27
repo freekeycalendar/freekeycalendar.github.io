@@ -53,13 +53,9 @@ function getRows() {
     try {
         gapi.client.sheets.spreadsheets.values.batchGet({
           spreadsheetId: spreadsheetId,
-          ranges: ["A1:G10"],
+          ranges: ["A1:H100"],
         }).then((response) => {
-            console.log(response)
-          const result = response.result;
-          console.log(result);
-          console.log(`${result.valueRanges.length} ranges retrieved.`);
-          // if (callback) callback(response);
+          renderRows(response.result.valueRanges[0].values);
         });
       } catch (err) {
           console.log(err);
@@ -68,6 +64,7 @@ function getRows() {
       }
   } else if (useTestData) {
     renderRows(RESPONSE);
+    //sheety
   } else {
     let url = 'https://api.sheety.co/1e98435928ea803a2e7aa06d00608900/fkcSocialCalendar/events';
     fetch(url)
@@ -80,19 +77,30 @@ function getRows() {
 
 
 function renderRows(rows) {
-    let sortedRows = rows.sort((a, b) =>  new Date(a['date (mm/dd)']) - new Date(b['date (mm/dd)']));
+    
+    let sortedRows = rows.slice(1).sort((a, b) =>  new Date(a['date (mm/dd)']) - new Date(b['date (mm/dd)']));
   
-    for (let i = 0; i < sortedRows.length; i++) {
+    for (let i = 1; i < sortedRows.length; i++) {
         let r = rows[i];
-        let event = r['event'];
-        let date = r['date (mm/dd)'];
-        let time = r['time'];
-        let location = r['location'];
-        let imagelink = r['imageLink (optional)'];
-        let description = r['description (optional)']
-        let cost = r['cost (optional)']
-        let link = r['link (optional)']
-        
+        // let event = r['event'];
+        // let date = r['date (mm/dd)'];
+        // let time = r['time'];
+        // let location = r['location'];
+        // let imagelink = r['imageLink (optional)'];
+        // let description = r['description (optional)']
+        // let cost = r['cost (optional)']
+        // let link = r['link (optional)']
+        let event = r[0];
+        let date = r[1];
+        let time = r[2];
+        let location = r[3];
+        let imagelink = r[7];
+        let description = r[6]
+        let cost = r[5]
+        let link = r[4]
+
+        if (!(event && date && time && location)) continue;
+
         const node = document.createElement("div");
         node.classList.add("event");
 
