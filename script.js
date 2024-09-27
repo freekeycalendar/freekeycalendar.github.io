@@ -15,7 +15,7 @@ function getRows() {
 
 
 function renderRows(rows) {
-    let sortedRows = rows.sort((a, b) =>  new Date(b.date) - new Date(a.date));
+    let sortedRows = rows.sort((a, b) =>  new Date(b['date (mm/dd)']) - new Date(a['date (mm/dd)']));
   
     for (let i = 0; i < sortedRows.length; i++) {
         let r = rows[i];
