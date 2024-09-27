@@ -83,7 +83,7 @@ function renderRows(rows) {
     let sortedRows = rows.slice(1).sort((a, b) =>  new Date(a[1]) - new Date(b[1]));
   
     for (let i = 0; i < sortedRows.length; i++) {
-        let r = rows[i];
+        let r = sortedRows[i];
         // let event = r['event'];
         // let date = r['date (mm/dd)'];
         // let time = r['time'];
