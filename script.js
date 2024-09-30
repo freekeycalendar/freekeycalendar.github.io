@@ -108,7 +108,7 @@ function renderRows(rows) {
         let fulldate = date.includes(currentYear) ? date :  date + "/" + currentYear
 
         if (!(event && date && time && location) || event === "Event name") continue;
-        if (new Date(fulldate) - Date.now() < 0) continue;
+        if (new Date(fulldate) - Date.now() + 86400000 < 0) continue;
 
         const node = document.createElement("div");
         node.classList.add("event");
