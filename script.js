@@ -81,8 +81,8 @@ function renderRows(rows) {
     let currentYear = new Date(Date.now()).getFullYear();
   
     let sortedRows = rows.slice(1).sort((a, b) =>  {
-      let fulldatea = a[1].includes(currentYear) ? a[1] :  a[1] + "/" + currentYear;
-      let fulldateb = b[1].includes(currentYear) ? b[1] :  b[1] + "/" + currentYear;
+      let fulldatea = a[1]?.includes(currentYear) ? a[1] :  a[1] + "/" + currentYear;
+      let fulldateb = b[1]?.includes(currentYear) ? b[1] :  b[1] + "/" + currentYear;
       return new Date(fulldatea) - new Date(fulldateb);
     });
   
@@ -104,10 +104,10 @@ function renderRows(rows) {
         let description = r[6]
         let cost = r[5]
         let link = r[4]
-
+      
+        if (!(event && date && time && location) || event === "Event name") continue;
         let fulldate = date.includes(currentYear) ? date :  date + "/" + currentYear
 
-        if (!(event && date && time && location) || event === "Event name") continue;
         if (new Date(fulldate) - Date.now() + 86400000 < 0) continue;
 
         const node = document.createElement("div");
