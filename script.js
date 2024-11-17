@@ -106,7 +106,7 @@ function renderRows(rows) {
         let link = r[4]
       
         if (!(event && date && time && location) || event === "Event name") continue;
-        let fulldate = date.includes(currentYear) ? date :  date + "/" + currentYear
+        let fulldate = (date.includes(currentYear) || date.split("/").length == 3) ? date :  date + "/" + currentYear
 
         if (new Date(fulldate) - Date.now() + 86400000 < 0) continue;
 
