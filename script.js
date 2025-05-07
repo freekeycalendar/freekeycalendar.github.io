@@ -36,10 +36,15 @@ function gapiLoaded() {
  * discovery doc to initialize the API.
  */
 async function initializeGapiClient() {
+try {
   await gapi.client.init({
     apiKey: API_KEY,
     discoveryDocs: DISCOVERY_DOCS,
   });
+  console.log('GAPI client initialized successfully.');
+} catch (error) {
+  console.error('Error initializing GAPI client:', error);
+}
   gapiInited = true;
   getRows();
 }
