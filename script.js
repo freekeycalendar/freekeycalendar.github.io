@@ -86,8 +86,8 @@ function renderRows(rows) {
     let currentYear = new Date(Date.now()).getFullYear();
   
     let sortedRows = rows.slice(1).sort((a, b) =>  {
-      let fulldatea = a[1]?.split('/').count == 3 ? a[1] :  a[1] + "/" + currentYear;
-      let fulldateb = b[1]?.split('/').count == 3 ? b[1] :  b[1] + "/" + currentYear;
+      let fulldatea = a[1]?.split('/').length == 3 ? a[1] :  a[1] + "/" + currentYear;
+      let fulldateb = b[1]?.split('/').length == 3 ? b[1] :  b[1] + "/" + currentYear;
       return new Date(fulldatea) - new Date(fulldateb);
     });
   
