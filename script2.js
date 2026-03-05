@@ -80,7 +80,6 @@ function getRows() {
 
 function renderRows(rows) {
     //hide loader
-    document.getElementById("loader").style.display = "none";
     let currentYear = new Date(Date.now()).getFullYear();
   
     let sortedRows = rows.slice(1).sort((a, b) =>  {
