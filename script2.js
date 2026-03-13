@@ -6,6 +6,21 @@
 
 console.log("yay");
 
+
+document.getElementById('myForm').addEventListener('submit', function (event) {
+    // Prevent the default form submission
+    event.preventDefault();
+
+    // Custom logic here (e.g., send data with fetch)
+    console.log('Form submission intercepted. Sending data with custom logic.');
+    alert("yay");
+    // Example of getting form data
+    const formData = new FormData(this);
+    // Use fetch() to send the data without a page reload
+    // fetch('/your-endpoint', { method: 'POST', body: formData });
+});
+
+
 const CLIENT_ID = '<YOUR_CLIENT_ID>';
 const API_KEY = 'AIzaSyBdvxbF9de3dZ8I28KcTI6p6bYqqjBnRrg';
 const spreadsheetId = '1aiBHwvFfLx21bpbXbQ6edn7Zyp_JK08oEqZYNnbTiSs'
