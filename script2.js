@@ -109,25 +109,40 @@ function renderRows(rows) {
       
         if (!(event && date && time && location) || event === "Event name") continue;
         let fulldate = (date.includes(currentYear) || date.split("/").length == 3) ? date :  date + "/" + currentYear
-
+      
+        const shortDate = date.split("/").slice(0,2).join("/");
+        const shortLocation = location.split(",").slice(0,1);
+          
         if (new Date(fulldate) - Date.now() + 86400000 < 0) continue;
 
-        // new logic
       
         const node = document.createElement("div");
         node.classList.add("event");
-
-        const sepnode = document.createElement("hr");
-        sepnode.classList.add("separator");
-        node.appendChild(sepnode);
-
+        
+      
         addTitle(node, event);
-        addDate(node, date, time);
-        addLocation(node, location);
+
+        addDateAndLocation(node, shortDate, time, shortLocation);
+      
+        // addDate(node, date, time);
+        // addLocation(node, location);
+
+      
 
         document.getElementById("post").appendChild(node);
     }
 }
+function addDateAndLocation(node, date, time, location) {
+    const infoNode = document.createElement("div");
+  
+    const datetext = time ? date + " @ " + time : date;
+  
+    infoNode.innerText = datetext + " - " + location;
+    infoNode.classList.add("info");
+    node.appendChild(infoNode);
+
+}
+
 function addLocation(node, location) {
     const locationnode = document.createElement("div");
     locationnode.innerText = location;
